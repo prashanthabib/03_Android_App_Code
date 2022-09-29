@@ -1,0 +1,7 @@
+{
+  "name": "FalaTech",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
