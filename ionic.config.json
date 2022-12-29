@@ -3,5 +3,9 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxies": [{
+    "path": "/api",
+    "proxyUrl": "https://122ml6xqdd.execute-api.ap-south-1.amazonaws.com/testing"
+  }]
 }

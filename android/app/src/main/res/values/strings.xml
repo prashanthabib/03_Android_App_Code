@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FalaTech</string>
+    <string name="title_activity_main">FalaTech</string>
+    <string name="package_name">com.ekathvainnovations.falatech</string>
+    <string name="custom_url_scheme">com.ekathvainnovations.falatech</string>
+</resources>

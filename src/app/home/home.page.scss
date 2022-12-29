@@ -1,0 +1,70 @@
+.circle{
+  width: 127px;
+  height: 127px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 10px solid #4882c2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle_col{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.device_name{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.heading{
+  margin-left: 13px;
+  margin-bottom: 0px !important;
+  font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.info-card{
+  background-color: #4882c2;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.justify{
+  justify-content: center;
+}
+
+strong{
+  font-size: 20px;
+}
+
+.smallFont{
+  font-size: 10px;
+}
+
+.cameraIcon{
+  margin-left: 0px;
+}
+
+.cameraButtons{
+  width: 60px;
+  height: 60px;
+  --border-radius: 50% !important;
+}
+
+.right{
+  justify-content: right;
+}
+
+.buttonDisconnect{
+    position: absolute;
+    top: 20px;
+    right: 34px
+}

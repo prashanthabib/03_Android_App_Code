@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <!-- <a [routerLink]="['/settings']">
+      <ion-button>
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+    </a> -->
+    <ion-button (click)="ionViewDidEnter()">
+      <ion-icon name="refresh-outline"></ion-icon>
+    </ion-button>
+    </ion-buttons>
+    <ion-title>Customer ID : {{customerId}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="!isLoading">
+
+    <ion-row *ngIf="!isBluetoothEnabled" class="justify">
+      <ion-button (click)="openBluetoothSettings()">Open Bluetooth Settings</ion-button>
+    </ion-row>
+    <ion-row *ngIf="!isBluetoothEnabled" class="justify">
+      <p>After Enabling Bluetooth Refresh Page Once!!!</p>
+    </ion-row>
+
+    <ion-grid *ngIf="isBluetoothEnabled && !isBluetoothDeviceConnected">
+      <ion-row class="ion-text-center">
+        <ion-col>
+          <h1 class="heading">Available Devices List</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let device of devices">
+        <ion-col class="device_name">
+          {{device.name}}
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="connectDevice(device.address,device.name)">Connect</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Camera Info</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+        <ion-row>
+          <ion-col size="3">
+            <ion-button id="start_camera" (click)="startCameraManaul()" class="cameraButtons">
+            <ion-icon name="camera" class="cameraIcon"></ion-icon>
+            </ion-button>
+            <p class="ion-text-center smallFont">Start</p>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button id="take_picture" (click)="takePictureManaul()" class="cameraButtons">
+            <ion-icon name="image" class="cameraIcon"></ion-icon>
+            </ion-button>
+            <p class="ion-text-center smallFont">Capture</p>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button id="stop_camera" (click)="stopCameraManaul()" class="cameraButtons">
+              <ion-icon name="square" class="cameraIcon"></ion-icon>
+            </ion-button>
+            <p class="ion-text-center smallFont">Stop</p>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="switchCameraManaul()" class="cameraButtons">
+            <ion-icon name="camera-reverse" class="cameraIcon"></ion-icon>
+            </ion-button>
+            <p class="ion-text-center smallFont">Switch</p>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="IMAGE_PATH">
+      <ion-card-header>
+        <ion-card-title>Captured Image</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row class="ion-text-center">
+          <ion-col>
+            <img [src]="IMAGE_PATH">
+          </ion-col>
+          </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+      </ion-grid>
+
+      <div *ngIf="isBluetoothEnabled && isBluetoothDeviceConnected">
+
+        <ion-row>
+          <ion-col>
+            <h1 class="heading">Info </h1>
+          </ion-col>
+          <ion-col>
+            <ion-button class="buttonDisconnect" (click)="disconnectDevice()">
+              Disconnect
+              </ion-button>
+          </ion-col>
+        </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card class="info-card">
+            <ion-card-content>
+              <ion-row class="justify bold">
+               <strong>{{ cameraModeDisplay }}</strong>
+              </ion-row>
+              <ion-row class="justify smallFont">
+                Camera View
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="info-card">
+            <ion-card-content>
+          <ion-row class="justify">
+            <strong> {{ bluetoothDeviceConnectedName }}</strong>
+          </ion-row>
+          <ion-row class="justify smallFont">
+            Device Name
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+      </ion-row>
+
+
+      <ion-card *ngIf="IMAGE_PATH">
+        <ion-card-header>
+          <ion-card-title>Captured Image</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row class="ion-text-center">
+            <ion-col>
+              <img [src]="IMAGE_PATH">
+            </ion-col>
+            </ion-row>
+        </ion-card-content>
+      </ion-card>
+
+</div>
+  </div>
+
+</ion-content>

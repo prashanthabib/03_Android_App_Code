@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register Customer ID</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="customerIdForm" (ngSubmit)="submitForm()" class="form-container" novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">Customer Id <span class="requried">*</span></ion-label>
+      <ion-input formControlName="customerId" type="text" class="" required></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.customerId.errors?.required">
+      Customer Id is required.
+    </span>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.customerId.errors?.pattern">
+      / is not allowed.
+    </span>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.customerId.errors?.minlength">
+      Customer Id should be min 2 chars long.
+    </span>
+
+    <ion-row class="ion-text-center">
+      <ion-col size="6">
+        <ion-button type="reset" fill="outline" color="danger" class="rounded-btn" shape="round">Clear</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button type="submit" color="primary" class="rounded-btn" shape="round">Submit</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
