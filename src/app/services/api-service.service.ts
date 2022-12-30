@@ -16,9 +16,9 @@ export class ApiServiceService {
   //  endpoint = 'https://122ml6xqdd.execute-api.ap-south-1.amazonaws.com/testing/file-upload-ionic/';
 
   // Office Server Connection
-  endpoint = 'http://202.131.150.79:9091/';
-  // Cloud Server Connection
   // endpoint = 'http://202.131.150.79:9091/';
+  // Cloud Server Connection
+  endpoint = 'http://65.2.35.215:9091/';
 
    httpOptions = {
     headers: new HttpHeaders({
