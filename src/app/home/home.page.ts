@@ -43,6 +43,7 @@ export class HomePage implements OnInit {
   cameraModeDisplay = 'Front';
   success = '1';
   failure = '0';
+  autoConnect = false;
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   IMAGE_PATH: any;
@@ -97,6 +98,17 @@ export class HomePage implements OnInit {
 
     setTimeout(() => {
       this.customerId = localStorage.getItem('customerId');
+      console.log(localStorage.getItem('autoConnect'));
+
+      if(localStorage.getItem('autoConnect') === '1'){
+        this.ngZone.run(() => {
+          this.autoConnect = true;
+        });
+      }else{
+        this.ngZone.run(() => {
+          this.autoConnect = false;
+        });
+      }
       this.checkBluetoothEnabled();
       this.insomnia.keepAwake().then(
         (success) => {},
@@ -202,6 +214,16 @@ export class HomePage implements OnInit {
     });
   }
 
+  setAutoConnect(){
+    console.log('AutoConnect Status = '+this.autoConnect);
+    this.autoConnect = !this.autoConnect;
+    if(this.autoConnect){
+      localStorage.setItem('autoConnect','1');
+    }else{
+      localStorage.setItem('autoConnect','0');
+    }
+  }
+
   listPairedDevices() {
     this.bluetoothSerial.list().then(success => {
       this.devices = success;
@@ -214,7 +236,7 @@ export class HomePage implements OnInit {
 
     this.alertController.create({
       header: 'Disconnect Bluetooth Device',
-      message: 'You are about to disconnec the bluetoth device. Do you want to continue?',
+      message: 'You are about to disconnect the bluetoth device. Do you want to continue?',
       backdropDismiss: false,
       buttons: [{
         text: 'No',
@@ -243,6 +265,8 @@ export class HomePage implements OnInit {
 
     this.bluetoothSerial.connect(address).subscribe(
       (connectRes) => {
+        localStorage.setItem('lasConnectedDeviceAdress',address);
+        localStorage.setItem('lasConnectedDeviceName',name);
         this.isBluetoothDeviceConnected = true;
         this.bluetoothDeviceConnectedName = name;
         this.loader.dismissLoader();
@@ -326,6 +350,11 @@ export class HomePage implements OnInit {
           this.isBluetoothDeviceConnected = false;
         });
         this.showMessage('Device Connect Error = '+connectErr);
+          if(localStorage.getItem('autoConnect') === '1'){
+            localStorage.setItem('lasConnectedDeviceAdress',address);
+            localStorage.setItem('lasConnectedDeviceName',name);
+            this.connectDevice(localStorage.getItem('lasConnectedDeviceAdress'),localStorage.getItem('lasConnectedDeviceName'));
+          }
       }
     );
   });

@@ -18,7 +18,9 @@ export class ApiServiceService {
   // Office Server Connection
   // endpoint = 'http://202.131.150.79:9091/';
   // Cloud Server Connection
-  endpoint = 'http://65.2.35.215:9091/';
+  // endpoint = 'http://65.2.35.215:9091/';
+  // endpoint = 'http://3.112.125.233:9091/';
+  endpoint = 'http://15.206.69.52:9091/';
 
    httpOptions = {
     headers: new HttpHeaders({

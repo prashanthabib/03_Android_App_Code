@@ -35,6 +35,17 @@
         </ion-col>
       </ion-row>
 
+      <ion-row>
+        <ion-col size="6">
+          <p>Auto Connect</p>
+        </ion-col>
+        <ion-col size="6">
+          <ion-toggle checked="{{ autoConnect}}"
+          (ionChange)="setAutoConnect()">
+         </ion-toggle>
+        </ion-col>
+      </ion-row>
+
       <ion-card>
         <ion-card-header>
           <ion-card-title>Camera Info</ion-card-title>
